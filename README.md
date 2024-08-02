@@ -10,6 +10,13 @@
 # Proyecto SES Event API
 Este proyecto implementa una API que procesa datos de eventos SES de Amazon, utilizando **Laravel** y **Spatie/laravel-data** para manejar la validación y transformación de datos. También se utilizan **Resources** de Laravel para formatear la respuesta de la API según los requerimientos específicos.
 
+## Demo
+Para ver el funcionamiento del proyecto, se puede ver el siguiente enlace https://www.loom.com/share/2805c82a7eda49bbb3cd37177ce1144c, en el screen recording demuestro como funciona el servicio y su validacion por medio de form request, el cual da un error si no se cumple lo siguiente:
+```php
+    protected const VERDICT_STATUSES = ['PASS', 'FAIL'];
+    protected const DMARC_POLICIES = ['reject', 'none', 'quarantine'];
+```
+
 ## Postman Collection
 La collection de postman esta adjunta en el repositorio bajo el nombre de **Laravel Test.postman_collection.json**
 
