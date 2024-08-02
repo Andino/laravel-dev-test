@@ -8,8 +8,10 @@
 </p>
 
 # Proyecto SES Event API
-
 Este proyecto implementa una API que procesa datos de eventos SES de Amazon, utilizando **Laravel** y **Spatie/laravel-data** para manejar la validación y transformación de datos. También se utilizan **Resources** de Laravel para formatear la respuesta de la API según los requerimientos específicos.
+
+## Postman Collection
+La collection de postman esta adjunta en el repositorio bajo el nombre de **Laravel Test.postman_collection.json**
 
 ## Tecnologías Utilizadas
 
@@ -20,11 +22,10 @@ Este proyecto implementa una API que procesa datos de eventos SES de Amazon, uti
 
 ### Modelos de Datos y Clases de Datos
 
-- **SESRecord**: Clase de datos que representa un registro de evento SES.
-- **SESData**: Clase de datos anidada dentro de `SESRecord`, que incluye detalles como `receipt` y `mail`.
-- **ReceiptData**: Clase de datos que contiene información sobre el recibo del correo, como verificaciones de spam y virus.
-- **MailData**: Clase de datos que contiene detalles sobre el correo, como el `timestamp` y los `headers`.
-- **SESRecordCollection**: Colección de `SESRecord` utilizada para manejar múltiples registros de eventos SES.
+- **SES**: Clase de datos que representa un registro de evento SES.
+- **SES**: Clase de datos anidada dentro de `SESRecord`, que incluye detalles como `receipt` y `mail`.
+- **Receipt**: Clase de datos que contiene información sobre el recibo del correo, como verificaciones de spam y virus.
+- **Mail**: Clase de datos que contiene detalles sobre el correo, como el `timestamp` y los `headers`.
 
 ### Recursos de Laravel
 
@@ -38,26 +39,31 @@ Este proyecto implementa una API que procesa datos de eventos SES de Amazon, uti
 
 ### Creación y Uso de Clases de Datos
 
-Las clases de datos están definidas utilizando **Spatie/Laravel-Data**, que proporciona una forma estructurada de definir datos tipados y validar su estructura. Los datos se inicializan y validan utilizando el método `from()`.
+Las clases de datos están definidas utilizando **Spatie/Laravel-Data**, que proporciona una forma estructurada de definir datos tipados y validar su estructura. Los datos se inicializan y validan utilizando el método `from()` o `collect()` similar a un API Resource.
 
 #### Ejemplo de Uso
-
 ```php
-return $dataClass::collect($data['Records']);
+return $dataClass::from($data);
+```
+o
+```php
+return $dataClass::collect($data);
+```
 
 ## Enlaces Útiles y Referencias
 
 ### Laravel
 
 - [Documentación General de Laravel](https://laravel.com/docs)
-- [Form Requests](https://laravel.com/docs/10.x/validation#form-request-validation)
-- [API Resources](https://laravel.com/docs/10.x/eloquent-resources)
-- [Service Providers](https://laravel.com/docs/10.x/providers)
-- [Container: Dependency Injection](https://laravel.com/docs/10.x/container#dependency-injection)
-- [Contracts](https://laravel.com/docs/10.x/contracts)
-- [Collections](https://laravel.com/docs/10.x/collections)
-- [Request Validation](https://laravel.com/docs/10.x/validation)
-- [Middleware](https://laravel.com/docs/10.x/middleware)
+- [Form Requests](https://laravel.com/docs/11.x/validation#form-request-validation)
+- [API Resources](https://laravel.com/docs/11.x/eloquent-resources)
+- [Service Providers](https://laravel.com/docs/11.x/providers)
+- [Container: Dependency Injection](https://laravel.com/docs/11.x/container#dependency-injection)
+- [Contracts](https://laravel.com/docs/11.x/contracts)
+- [Collections](https://laravel.com/docs/11.x/collections)
+- [Request Validation](https://laravel.com/docs/11.x/validation)
+- [Middleware](https://laravel.com/docs/11.x/middleware)
+- [Single ActionController](https://laravel.com/docs/11.x/controllers#single-action-controllers)
 
 ### Spatie Laravel Data
 
