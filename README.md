@@ -22,7 +22,7 @@ La collection de postman esta adjunta en el repositorio bajo el nombre de **Lara
 
 ## Ejecutar la Api
 
-Estos son los pasos básicos para configurar y ejecutar una aplicación Laravel 11:
+Estos son los pasos básicos para configurar y ejecutar la app:
 
 ### 1. Instalación de Dependencias
 
