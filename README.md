@@ -7,60 +7,59 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Proyecto SES Event API
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Este proyecto implementa una API que procesa datos de eventos SES de Amazon, utilizando **Laravel** y **Spatie/laravel-data** para manejar la validación y transformación de datos. También se utilizan **Resources** de Laravel para formatear la respuesta de la API según los requerimientos específicos.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tecnologías Utilizadas
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Laravel**: Framework PHP para el desarrollo de aplicaciones web.
+- **Spatie/Laravel-Data**: Biblioteca para definir y validar datos fuertemente tipados.
 
-## Learning Laravel
+## Estructura del Proyecto
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Modelos de Datos y Clases de Datos
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **SESRecord**: Clase de datos que representa un registro de evento SES.
+- **SESData**: Clase de datos anidada dentro de `SESRecord`, que incluye detalles como `receipt` y `mail`.
+- **ReceiptData**: Clase de datos que contiene información sobre el recibo del correo, como verificaciones de spam y virus.
+- **MailData**: Clase de datos que contiene detalles sobre el correo, como el `timestamp` y los `headers`.
+- **SESRecordCollection**: Colección de `SESRecord` utilizada para manejar múltiples registros de eventos SES.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Recursos de Laravel
 
-## Laravel Sponsors
+- **SESRecordResource**: Resource de Laravel para formatear la salida de `SESRecord`, incluyendo métodos para transformar datos específicos como:
+  - `mes`: Extrae el mes de `mail.timestamp`.
+  - `retrasado`: Indica si `processingTimeMillis` es mayor a 1000.
+  - `emisor`: Obtiene el usuario de `mail.source` sin el dominio.
+  - `receptor`: Lista de usuarios de `mail.destination` sin los dominios.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Implementación Detallada
 
-### Premium Partners
+### Creación y Uso de Clases de Datos
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Las clases de datos están definidas utilizando **Spatie/Laravel-Data**, que proporciona una forma estructurada de definir datos tipados y validar su estructura. Los datos se inicializan y validan utilizando el método `from()`.
 
-## Contributing
+#### Ejemplo de Uso
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```php
+return $dataClass::collect($data['Records']);
 
-## Code of Conduct
+## Enlaces Útiles y Referencias
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Laravel
 
-## Security Vulnerabilities
+- [Documentación General de Laravel](https://laravel.com/docs)
+- [Form Requests](https://laravel.com/docs/10.x/validation#form-request-validation)
+- [API Resources](https://laravel.com/docs/10.x/eloquent-resources)
+- [Service Providers](https://laravel.com/docs/10.x/providers)
+- [Container: Dependency Injection](https://laravel.com/docs/10.x/container#dependency-injection)
+- [Contracts](https://laravel.com/docs/10.x/contracts)
+- [Collections](https://laravel.com/docs/10.x/collections)
+- [Request Validation](https://laravel.com/docs/10.x/validation)
+- [Middleware](https://laravel.com/docs/10.x/middleware)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Spatie Laravel Data
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- [Spatie Laravel Data - GitHub](https://github.com/spatie/laravel-data)
+- [Documentación de Spatie Laravel Data](https://spatie.be/docs/laravel-data/v1/introduction)
