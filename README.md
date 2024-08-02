@@ -20,6 +20,23 @@ Para ver el funcionamiento del proyecto, se puede ver el siguiente enlace https:
 ## Postman Collection
 La collection de postman esta adjunta en el repositorio bajo el nombre de **Laravel Test.postman_collection.json**
 
+## Ejecutar la Api
+
+Estos son los pasos básicos para configurar y ejecutar una aplicación Laravel 11:
+
+### 1. Instalación de Dependencias
+
+Instala las dependencias del proyecto utilizando Composer.
+
+```bash
+composer install
+```
+
+### 2. Corre el servicio
+```bash
+php artisan serve
+```
+
 ## Tecnologías Utilizadas
 
 - **Laravel**: Framework PHP para el desarrollo de aplicaciones web.
